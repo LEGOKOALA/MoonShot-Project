@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://b43etndv5yvj0"]
+[gd_scene load_steps=9 format=4 uid="uid://b43etndv5yvj0"]
 
 [ext_resource type="Texture2D" uid="uid://cbq3714vwdgqa" path="res://Assets/icon.svg" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://f363hv2ogksw" path="res://Scenes/character.tscn" id="1_iukft"]
+[ext_resource type="PackedScene" uid="uid://1gaeoivf66th" path="res://Scenes/platform.tscn" id="2_j5yw3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5yw3"]
 texture = ExtResource("1_gl6un")
@@ -137,6 +138,44 @@ texture = ExtResource("1_gl6un")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_j5yw3")
 
+[sub_resource type="Animation" id="Animation_j5yw3"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(328, 24), Vector2(440, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_kldst"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(328, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2bpf"]
+_data = {
+&"RESET": SubResource("Animation_kldst"),
+&"move": SubResource("Animation_j5yw3")
+}
+
 [node name="Game" type="Node2D"]
 
 [node name="Game Layers" type="Node2D" parent="."]
@@ -146,7 +185,23 @@ tile_map_data = PackedByteArray("AAD4/wAAAAAHAAAAAAD4/wEAAAAHAAEAAAD4/wIAAAAHAAI
 tile_set = SubResource("TileSet_kldst")
 
 [node name="Character" parent="." instance=ExtResource("1_iukft")]
+position = Vector2(-80, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Character"]
 position = Vector2(0, -32)
 zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Static Platform #1" parent="Platforms" instance=ExtResource("2_j5yw3")]
+position = Vector2(72, -24)
+
+[node name="Mobile Platform #1" parent="Platforms" instance=ExtResource("2_j5yw3")]
+position = Vector2(328, 24)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Mobile Platform #1"]
+libraries = {
+&"": SubResource("AnimationLibrary_b2bpf")
+}
+autoplay = "move"
