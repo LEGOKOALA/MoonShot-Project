@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://b43etndv5yvj0"]
+[gd_scene load_steps=15 format=4 uid="uid://b43etndv5yvj0"]
 
 [ext_resource type="Texture2D" uid="uid://cbq3714vwdgqa" path="res://Assets/icon.svg" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://f363hv2ogksw" path="res://Scenes/Character.tscn" id="1_iukft"]
 [ext_resource type="PackedScene" uid="uid://1gaeoivf66th" path="res://Scenes/platform.tscn" id="2_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://c3lsoh8kl35rt" path="res://Scenes/Coin.tscn" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://d1ubf7qmmuay1" path="res://Scenes/killzone.tscn" id="5_b2bpf"]
-[ext_resource type="Script" uid="uid://k71ks5cbs5g3" path="res://Scenes/ui.gd" id="6_7lihs"]
+[ext_resource type="Script" uid="uid://k71ks5cbs5g3" path="res://Scripts/ui.gd" id="6_7lihs"]
+[ext_resource type="Script" uid="uid://c7k0rh4h8k107" path="res://Scripts/CoinLabel.gd" id="7_fgofq"]
+[ext_resource type="PackedScene" uid="uid://416rrdvoibsc" path="res://Scenes/Checkpoint.tscn" id="8_2irst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j5yw3"]
 texture = ExtResource("1_gl6un")
@@ -240,3 +242,15 @@ offset_right = 110.0
 offset_bottom = 54.0
 theme_override_font_sizes/font_size = 24
 text = "Coins: 0"
+script = ExtResource("7_fgofq")
+
+[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GoopBar" type="TextureProgressBar" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Checkpoint" parent="." instance=ExtResource("8_2irst")]
+position = Vector2(-8, -8)
