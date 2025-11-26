@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://xtl1diwdywd5"]
+
+[ext_resource type="Script" uid="uid://d32xg7x5dg34g" path="res://Scripts/weapon.gd" id="1_er6cq"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_er6cq")
+
+[node name="Muzzle" type="Node2D" parent="."]
+
+[node name="Firerate" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

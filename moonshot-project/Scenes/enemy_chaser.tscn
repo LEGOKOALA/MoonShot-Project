@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://flkserolixuk"]
+
+[node name="enemy_chaser" type="Node2D"]

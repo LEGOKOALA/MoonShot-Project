@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c14y0lw5b2id2"]
+
+[ext_resource type="PackedScene" uid="uid://cb0bycnaovlwl" path="res://Scenes/wave_manager.tscn" id="1_6l7je"]
+[ext_resource type="PackedScene" uid="uid://bdb671wly1440" path="res://Scenes/ui_hud.tscn" id="2_jv6wh"]
+
+[node name="main_scene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="wave_manager" parent="." instance=ExtResource("1_6l7je")]
+position = Vector2(0, -8)
+
+[node name="ui_hud" parent="." instance=ExtResource("2_jv6wh")]
+position = Vector2(0, -16)
